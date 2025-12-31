@@ -1,0 +1,63 @@
+<div class="login-page" style="min-height: 100vh; position: fixed; top: 0; left: 0; width: 100%; z-index: 9999; background: #e9ecef; display: flex; align-items: center; justify-content: center;">
+  
+  <div class="login-box">
+    <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <span class="h1"><b>Grandes</b>Ligas</span>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Inicia sesión para comenzar</p>
+
+        <div *ngIf="errorMessage" class="alert alert-danger">
+          {{ errorMessage }}
+        </div>
+
+        <form (ngSubmit)="onLogin()">
+          
+          <div class="input-group mb-3">
+            <input type="email" 
+                   class="form-control" 
+                   placeholder="Email" 
+                   [(ngModel)]="credentials.email" 
+                   name="email" 
+                   required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="password" 
+                   class="form-control" 
+                   placeholder="Contraseña" 
+                   [(ngModel)]="credentials.password" 
+                   name="password" 
+                   required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Ingresar</button>
+            </div>
+          </div>
+
+        </form>
+        
+        <div class="social-auth-links text-center mt-2 mb-3">
+            <p>- O -</p>
+        </div>
+
+        <p class="mb-1 text-center">
+            <a routerLink="/register" class="text-center">Registrar una nueva cuenta</a>
+        </p>
+        </div>
+    </div>
+  </div>
+</div>

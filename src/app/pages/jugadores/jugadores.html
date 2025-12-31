@@ -1,0 +1,158 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <div class="row mb-2">
+      <div class="col-sm-6">
+        <h1 class="m-0">Plantilla de Jugadores</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="content">
+  <div class="container-fluid">
+    <div class="card card-warning"> <div class="card-header">
+        <h3 class="card-title">Lista de Jugadores</h3>
+        <div class="card-tools">
+          <button class="btn btn-light btn-sm" data-toggle="modal" data-target="#modalCrearJugador">
+            <i class="fas fa-user-plus"></i> Fichar Jugador
+          </button>
+        </div>
+      </div>
+      
+      <div class="card-body p-0">
+        <table class="table table-hover">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Edad</th>
+              <th>Posición</th>
+              <th>Equipo Actual</th> <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let jugador of jugadores">
+              <td>{{ jugador.id }}</td>
+              <td><strong>{{ jugador.nombre }}</strong></td>
+              <td>{{ jugador.edad }} años</td>
+              <td>{{ jugador.posicion }}</td>
+              
+              <td>
+                <span class="badge badge-success">{{ jugador.equipo?.nombre || 'Agente Libre' }}</span>
+              </td>
+              
+              <td>
+                <button class="btn btn-warning btn-sm mr-2" 
+                        data-toggle="modal" data-target="#modalEditarJugador"
+                        (click)="abrirEditar(jugador)">
+                  <i class="fas fa-pencil-alt"></i>
+                </button>
+                <button class="btn btn-danger btn-sm" (click)="borrarJugador(jugador.id)">
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="modal fade" id="modalCrearJugador" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Fichar Nuevo Jugador</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="nuevoJugador.nombre" name="nombre">
+          </div>
+          <div class="row">
+            <div class="col-6">
+               <div class="form-group">
+                 <label>Edad</label>
+                 <input type="number" class="form-control" [(ngModel)]="nuevoJugador.edad" name="edad">
+               </div>
+            </div>
+            <div class="col-6">
+               <div class="form-group">
+                 <label>Posición</label>
+                 <input type="text" class="form-control" [(ngModel)]="nuevoJugador.posicion" name="posicion" placeholder="Ej: Delantero">
+               </div>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label>Equipo</label>
+            <select class="form-control" [(ngModel)]="nuevoJugador.equipoId" name="equipo">
+              <option value="" disabled selected>Selecciona equipo...</option>
+              <option *ngFor="let eq of equipos" [value]="eq.id">
+                {{ eq.nombre }}
+              </option>
+            </select>
+          </div>
+
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModalCrear">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="guardarJugador()">Guardar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="modalEditarJugador" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-warning">
+        <h5 class="modal-title">Editar Jugador</h5>
+        <button type="button" class="close" data-dismiss="modal">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" [(ngModel)]="jugadorSeleccionado.nombre" name="nombreEdit">
+          </div>
+          <div class="row">
+             <div class="col-6">
+                <div class="form-group">
+                  <label>Edad</label>
+                  <input type="number" class="form-control" [(ngModel)]="jugadorSeleccionado.edad" name="edadEdit">
+                </div>
+             </div>
+             <div class="col-6">
+                <div class="form-group">
+                  <label>Posición</label>
+                  <input type="text" class="form-control" [(ngModel)]="jugadorSeleccionado.posicion" name="posicionEdit">
+                </div>
+             </div>
+          </div>
+
+          <div class="form-group">
+            <label>Equipo</label>
+            <select class="form-control" [(ngModel)]="jugadorSeleccionado.equipoId" name="equipoEdit">
+              <option *ngFor="let eq of equipos" [value]="eq.id">
+                {{ eq.nombre }}
+              </option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal" id="cerrarModalEditar">Cancelar</button>
+        <button type="button" class="btn btn-primary" (click)="actualizarJugador()">Actualizar</button>
+      </div>
+    </div>
+  </div>
+</div>

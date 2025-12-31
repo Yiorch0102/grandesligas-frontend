@@ -1,0 +1,69 @@
+<div *ngIf="showLayout" class="wrapper">
+
+  <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+    <ul class="navbar-nav">
+      <li class="nav-item">
+        <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+      </li>
+    </ul>
+  </nav>
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <a routerLink="/dashboard" class="brand-link">
+      <span class="brand-text font-weight-light">Grandes Ligas</span>
+    </a>
+
+    <div class="sidebar">
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu">
+          
+          <li class="nav-item">
+            <a routerLink="/dashboard" class="nav-link">
+              <i class="nav-icon fas fa-trophy"></i>
+              <p>Ligas</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/equipos" class="nav-link">
+              <i class="nav-icon fas fa-futbol"></i>
+              <p>Equipos</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/entrenadores" class="nav-link">
+              <i class="nav-icon fas fa-user-tie"></i>
+              <p>Entrenadores</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a routerLink="/jugadores" class="nav-link" routerLinkActive="active">
+              <i class="nav-icon fas fa-running"></i>
+              <p>Jugadores</p>
+            </a>
+          </li>
+
+          <li class="nav-item">
+            <a href="javascript:void(0)" class="nav-link" (click)="logout()">
+              <i class="nav-icon fas fa-sign-out-alt text-danger"></i>
+              <p>Cerrar Sesión</p>
+            </a>
+          </li>
+
+        </ul>
+      </nav>
+    </div>
+  </aside>
+
+</div> 
+<div [ngClass]="{'content-wrapper': showLayout}">
+    <section class="content">
+      <router-outlet></router-outlet>
+    </section>
+</div>
+
+<footer *ngIf="showLayout" class="main-footer">
+    <strong>Copyright &copy; 2025 Grandes Ligas.</strong>
+</footer>

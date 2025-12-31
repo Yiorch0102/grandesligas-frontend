@@ -1,0 +1,66 @@
+<div class="register-page" style="min-height: 100vh; display: flex; justify-content: center; align-items: center; background-color: #e9ecef;">
+  <div class="register-box" style="width: 400px;"> <div class="card card-outline card-primary">
+      <div class="card-header text-center">
+        <a class="h1"><b>Grandes</b>Ligas</a>
+      </div>
+      <div class="card-body">
+        <p class="login-box-msg">Registrar un nuevo miembro</p>
+  
+        <form (ngSubmit)="registrar()">
+          
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombre Completo" 
+                   [(ngModel)]="usuario.nombre" name="nombre" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-id-card"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Nombre de Usuario (Login)" 
+                   [(ngModel)]="usuario.username" name="username" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-user"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="input-group mb-3">
+            <input type="email" class="form-control" placeholder="Correo Electrónico" 
+                   [(ngModel)]="usuario.email" name="email" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-envelope"></span>
+              </div>
+            </div>
+          </div>
+  
+          <div class="input-group mb-3">
+            <input type="password" class="form-control" placeholder="Contraseña" 
+                   [(ngModel)]="usuario.password" name="password" required>
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <span class="fas fa-lock"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12">
+              <button type="submit" class="btn btn-primary btn-block">Registrarse</button>
+            </div>
+          </div>
+        </form>
+  
+        <div class="social-auth-links text-center mt-2 mb-3">
+          <p>- O -</p>
+        </div>
+  
+        <a routerLink="/login" class="text-center">Ya tengo una cuenta</a>
+      </div>
+    </div>
+  </div>
+</div>
