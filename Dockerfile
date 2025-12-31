@@ -1,5 +1,5 @@
 # ETAPA 1: BUILD (Compilación de Angular)
-FROM node:18-alpine AS build
+FROM node:22-alpine AS build
 WORKDIR /app
 
 # Instalamos dependencias
